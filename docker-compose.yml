@@ -1,0 +1,55 @@
+services:
+  index1:
+    image: ghcr.io/pinecone-io/pinecone-index:latest
+    platform: linux/amd64
+    environment:
+      PORT: 5081
+      INDEX_TYPE: serverless
+      DIMENSION: 2 
+      METRIC: cosine
+    ports:
+      - "5081:5081"
+  index2:
+    image: ghcr.io/pinecone-io/pinecone-index:latest
+    platform: linux/amd64
+    environment:
+      PORT: 5082
+      INDEX_TYPE: pod
+      DIMENSION: 2 
+      METRIC: dot-product
+    ports:
+      - "5082:5082"
+  db:
+    image: postgres:15
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=stitch
+      - POSTGRES_PASSWORD=hello_stitch
+      - POSTGRES_DB=stitch_ai
+  etl:
+    image: stitch_etl:latest
+    build: ./src/stitch_etl
+    command: jupyter-lab --allow-root --ip=0.0.0.0 --NotebookApp.token='hello_stitch'
+    volumes:
+      - ./dataset/:/app/stitch_etl/dataset
+    env_file:
+      - ./src/stitch_etl/env_file
+    ports:
+      - "8888:8888"
+    environment:
+      - HOST=0.0.0.0
+      - LISTEN_PORT=8888
+    restart: unless-stopped
+  stitch_ai:
+    image: stitch_ai:latest
+    build: ./src/stitch_ai
+    command: streamlit run stitch_ai/main.py --server.port 8080
+    # volumes:
+    #   - ./src/stitch_ai/:/app/stitch_ai
+    ports:
+      - "8080:8080"
+    environment:
+      - HOST=0.0.0.0
+      - LISTEN_PORT=8080
+    restart: unless-stopped
