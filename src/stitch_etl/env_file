@@ -1,0 +1,7 @@
+DEBUG=1
+SECRET_KEY=foo
+SQL_DATABASE=stitch_ai
+SQL_USER=stitch
+SQL_PASSWORD=hello_stitch
+SQL_HOST=db
+SQL_PORT=5432

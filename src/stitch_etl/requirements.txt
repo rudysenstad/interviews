@@ -1,0 +1,5 @@
+pandas
+numpy
+jupyter
+psycopg2-binary
+sqlalchemy
