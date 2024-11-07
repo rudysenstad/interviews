@@ -16,10 +16,10 @@
 - [Add RAG to langchain](https://python.langchain.com/docs/tutorials/rag/)
 ###
 ```
-docker build -t stitch_etl:latest Dockerfile.ETL
-docker build -t stitch_ai:latest Dockerfile.agent
-docker-compose up -d
+docker-compose up -d --build
 ```
+- navigate to [Jupyter Lab](http://localhost:8888/lab) for the ETL notebook
+- navigate to [Agent](http://localhost:8080/) for the chatbot
 ## Requirements
 ### Data Ingestion
 Provide a dataset (e.g., JSON, CSV, or unstructured text files) that includes a mix of structured and
