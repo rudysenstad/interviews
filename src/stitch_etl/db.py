@@ -30,6 +30,7 @@ class DatabaseHandler():
         table creation
         """
         table.__table__.create(bind=self.engine, checkfirst=True)
+        self.session.commit()
 
     def create_tables(self):
         """
@@ -38,5 +39,5 @@ class DatabaseHandler():
         """
         if not self.engine:
             self.get_db_session()
-        tables = [CreditType, Person, Genre, Credit, Movie, MovieReview]
+        tables = [CreditType, Person, Genre, Movie, Credit, MovieReview]
         _ = [self._create_table(table) for table in tables]

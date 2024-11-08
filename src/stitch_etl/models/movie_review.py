@@ -8,7 +8,7 @@ Base = declarative_base()
 class MovieReview(Base):
     __tablename__ = 'movie_review'
     id = Column(Integer, primary_key=True)
-    movie_id = Column(Integer, ForeignKey("movie.id"))
+    movie_id = Column(Integer, ForeignKey(Movie.id))
     critics_consensus = Column(String)
     audience_count = Column(Float)
     tomatometer_status = Column(String)

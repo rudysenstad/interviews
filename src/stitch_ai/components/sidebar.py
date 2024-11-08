@@ -35,7 +35,7 @@ def sidebar():
         st.markdown("---")
         st.markdown("# About")
         st.markdown(
-            "📖 This App is a fork on the lanchain-streamlit-docker example"
+            "This App is a fork on lanchain-streamlit-docker for Rudy's exceptional Disney interview"
         )
         st.markdown("---")
 

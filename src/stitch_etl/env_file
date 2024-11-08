@@ -5,3 +5,4 @@ SQL_USER=stitch
 SQL_PASSWORD=hello_stitch
 SQL_HOST=db
 SQL_PORT=5432
+OPENAI_API_KEY=yo_i_need_a_job
